@@ -976,7 +976,8 @@ p{color:var(--ink-soft)}
     };
     btn.disabled=true; btn.textContent='Отправляем…'; if(fErr)fErr.style.display='none';
     try{
-      var res=await fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      var apiBase=(window.__API_BASE||'');
+      var res=await fetch(apiBase+'/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
       if(!res.ok)throw new Error('status '+res.status);
       var data=await res.json(); if(!data||!data.ok)throw new Error('rejected');
       if(window.dataLayer)window.dataLayer.push({event:'lead_submit'});

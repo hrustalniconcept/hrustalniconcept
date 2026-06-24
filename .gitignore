@@ -17,3 +17,6 @@ data/
 .DS_Store
 .idea/
 .vscode/
+
+# build артефакт статического сайта (GitHub Pages)
+_site/

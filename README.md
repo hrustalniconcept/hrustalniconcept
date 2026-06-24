@@ -82,7 +82,29 @@ uvicorn app.main:app --reload
   / Отклонить** — фиксируют статус прямо в сообщении.
 - Админ-команда `/webhookinfo` доступна только `ADMIN_USER_ID`.
 
-## Деплой (Railway / Docker)
+## Превью на GitHub Pages (без бэкенда)
+
+Пока не подключён домен и серверный деплой, лендинг публикуется статикой на
+GitHub Pages — как публичное превью. Бэкенд (`/api/lead`, бот) при этом не
+работает: форма обращается к `window.__API_BASE` (по умолчанию пусто), и при
+недоступном API показывает контакты (телефон/Telegram).
+
+Сборка статики: `python3 scripts/build_static.py _site` — переписывает корневые
+пути на относительные (работает и на `user.github.io/repo/`, и позже на домене).
+Публикацию выполняет workflow `.github/workflows/pages.yml`.
+
+**Включить один раз:** Settings → Pages → Source → **GitHub Actions**. После
+этого пуш в ветку публикует сайт; адрес появится в Settings → Pages и в логах
+workflow. Если окружение `github-pages` ограничивает ветки — разрешите текущую
+ветку (Settings → Environments → github-pages) или слейте её в `main`.
+
+**Когда поднимем бэкенд:** задать репозиторную переменную `API_BASE`
+(Settings → Secrets and variables → Actions → Variables) на адрес API
+(напр. `https://audit.hrustalni.com`) и при необходимости `YM_ID` — форма на
+превью начнёт отправлять заявки на бэкенд (нужен CORS: добавить домен Pages в
+`ALLOWED_ORIGIN`).
+
+## Деплой бэкенда (Railway / Docker)
 
 > ⚠️ По брифу деплой и `set_webhook` выполняются **после подтверждения**.
 

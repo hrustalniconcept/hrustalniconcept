@@ -1,0 +1,52 @@
+name: Deploy landing to GitHub Pages
+
+# Публикуем статический лендинг (каталог web/) на GitHub Pages.
+# Бэкенд (/api/lead, Telegram-бот) на Pages не работает — это превью сайта
+# до подключения домена и серверного деплоя.
+
+on:
+  push:
+    branches:
+      - claude/modest-tesla-kjtcpz
+      - main
+    paths:
+      - "web/**"
+      - "scripts/build_static.py"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Один активный деплой за раз.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build static site
+        env:
+          # Когда поднимем бэкенд — задайте репозиторную переменную API_BASE
+          # (Settings → Variables) на адрес API, напр. https://audit.hrustalni.com
+          API_BASE: ${{ vars.API_BASE }}
+          YM_ID: ${{ vars.YM_ID }}
+        run: python3 scripts/build_static.py _site
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

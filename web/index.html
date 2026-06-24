@@ -161,6 +161,23 @@ p{color:var(--ink-soft)}
 .finding p{font-size:13.5px;line-height:1.4;color:var(--ink-soft)}
 @media(max-width:520px){.findings{grid-template-columns:1fr}}
 
+/* hero «взрыв-схема» — послойная сборка мастер-плана */
+.hero-explode{position:relative;width:min(80%,360px);margin:0 auto;aspect-ratio:1500/1120;
+  filter:drop-shadow(0 26px 44px rgba(2,24,38,.13))}
+.hx-layer{position:absolute;left:0;right:0;height:20%;overflow:hidden;top:calc(var(--i)*20%)}
+.hx-layer img{position:absolute;left:0;width:100%;height:auto;display:block;top:calc(var(--i)*-100%)}
+/* стартовое состояние и кинематографичная сборка — только когда JS включил .anim */
+.hero-explode.anim .hx-layer{opacity:0;transform:translateY(28px) scale(.965)}
+.hero-explode.anim.play .hx-layer{opacity:1;transform:none;
+  transition:opacity .95s cubic-bezier(.16,1,.3,1),transform .95s cubic-bezier(.16,1,.3,1)}
+/* снизу вверх: сначала основание, последним — рельеф */
+.hero-explode.anim.play .hx-layer:nth-child(5){transition-delay:.04s}
+.hero-explode.anim.play .hx-layer:nth-child(4){transition-delay:.15s}
+.hero-explode.anim.play .hx-layer:nth-child(3){transition-delay:.26s}
+.hero-explode.anim.play .hx-layer:nth-child(2){transition-delay:.37s}
+.hero-explode.anim.play .hx-layer:nth-child(1){transition-delay:.48s}
+@media(prefers-reduced-motion:reduce){.hero-explode.anim .hx-layer{opacity:1!important;transform:none!important}}
+
 /* metrics */
 .metrics{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--mist)}
 .metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
@@ -364,7 +381,7 @@ p{color:var(--ink-soft)}
 .layered{background:var(--paper)}
 .layered .layer-stage{position:relative;height:200vh;margin-top:10px}
 .layer-sticky{position:sticky;top:0;height:100vh;display:grid;place-items:center;perspective:1500px;overflow:hidden}
-.layer-img,.layer-vid{width:min(80vw,860px);max-height:80vh;object-fit:contain;will-change:transform,opacity;filter:drop-shadow(0 50px 70px rgba(2,24,38,.16))}
+.layer-img,.layer-vid{width:min(58vw,540px);max-height:70vh;object-fit:contain;border-radius:12px;will-change:transform,opacity;filter:drop-shadow(0 34px 56px rgba(2,24,38,.12));opacity:.96}
 .layer-labels{position:absolute;left:max(20px,4vw);top:50%;transform:translateY(-50%);margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:15px;z-index:3}
 .layer-labels li{display:flex;gap:11px;align-items:baseline;font-size:14px;color:var(--ink);opacity:0;transform:translateX(-16px);transition:.7s cubic-bezier(.16,1,.3,1)}
 .layer-labels li b{color:var(--muted);font-size:11.5px;font-weight:700;letter-spacing:.06em;font-variant-numeric:tabular-nums;min-width:18px}
@@ -387,7 +404,7 @@ p{color:var(--ink-soft)}
 .viz{background:var(--paper)}
 .viz .viz-stage{position:relative;height:200vh;margin-top:10px}
 .viz-sticky{position:sticky;top:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;overflow:hidden}
-.viz-frame{position:relative;width:min(92vw,1100px);aspect-ratio:1650/904;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 40px 90px -40px rgba(2,24,38,.5);border:1px solid var(--line)}
+.viz-frame{position:relative;width:min(68vw,680px);aspect-ratio:1650/904;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 30px 64px -38px rgba(2,24,38,.34);border:1px solid var(--line)}
 .viz-render,.viz-sketch{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
 .viz-render{will-change:transform;transform:scale(1.06)}
 .viz-sketch{will-change:opacity;z-index:2}
@@ -449,26 +466,13 @@ p{color:var(--ink-soft)}
     </div>
 
     <div class="plan rv">
-      <div class="plan-frame">
-        <img id="planImg" src="/assets/masterplan.jpg" alt="Мастер-план коттеджного посёлка с отметками аудита — проблемные зоны, узкие проезды, общественные пространства"
-             onerror="this.closest('.plan-frame').classList.add('ph');this.style.display='none'">
-        <!-- запасной SVG-мастер-план, если изображение не загрузилось -->
-        <svg viewBox="0 0 560 420" style="width:100%;display:none" class="plan-svg" aria-hidden="true">
-          <rect width="560" height="420" fill="#EAF0F4"/>
-          <g stroke="#9DB0BD" stroke-width="1" fill="none">
-            <path d="M40 60 H520 M40 130 H520 M40 200 H300 M340 200 H520 M40 290 H520 M40 360 H520"/>
-            <path d="M120 40 V380 M250 40 V200 M250 240 V380 M400 40 V380"/>
-          </g>
-          <rect x="270" y="150" width="60" height="120" fill="#D9E4EB"/>
-          <circle cx="290" cy="120" r="38" fill="none" stroke="#021826" stroke-width="2" stroke-dasharray="5 5"/>
-          <circle cx="430" cy="320" r="32" fill="none" stroke="#021826" stroke-width="2" stroke-dasharray="5 5"/>
-          <g font-family="Inter" font-size="13" font-weight="700" fill="#fff">
-            <circle cx="290" cy="120" r="11" fill="#021826"/><text x="290" y="125" text-anchor="middle">1</text>
-            <circle cx="430" cy="320" r="11" fill="#021826"/><text x="430" y="325" text-anchor="middle">2</text>
-            <circle cx="150" cy="245" r="11" fill="#021826"/><text x="150" y="250" text-anchor="middle">3</text>
-          </g>
-        </svg>
-      </div>
+      <figure class="hero-explode" id="heroExplode" aria-label="Взрыв-схема мастер-плана коттеджного посёлка: послойный разбор — земля и право, мастер-план и продукт, инженерия и сети, среда и благоустройство, экономика и очерёдность">
+        <span class="hx-layer" style="--i:0"><img src="/assets/layers-explode.jpg" alt="" decoding="async"></span>
+        <span class="hx-layer" style="--i:1"><img src="/assets/layers-explode.jpg" alt="" aria-hidden="true"></span>
+        <span class="hx-layer" style="--i:2"><img src="/assets/layers-explode.jpg" alt="" aria-hidden="true"></span>
+        <span class="hx-layer" style="--i:3"><img src="/assets/layers-explode.jpg" alt="" aria-hidden="true"></span>
+        <span class="hx-layer" style="--i:4"><img src="/assets/layers-explode.jpg" alt="" aria-hidden="true"></span>
+      </figure>
       <div class="plan-cap"><span class="dot"></span> Аудит на мастер-плане: отмечаем зоны, где проект теряет в окупаемости и капитализации</div>
       <div class="findings">
         <div class="finding"><span class="n">1</span><p>Градостроительные риски и ограничения проекта не учтены</p></div>
@@ -615,7 +619,7 @@ p{color:var(--ink-soft)}
   </div>
   <div class="layer-stage" id="layerStage">
     <div class="layer-sticky">
-      <img class="layer-img" id="layerImg" loading="lazy" decoding="async" alt="Взрыв-схема мастер-плана коттеджного посёлка: послойный разбор" src="/assets/layers-explode.jpg">
+      <img class="layer-img" id="layerImg" loading="lazy" decoding="async" alt="Мастер-план коттеджного посёлка с отметками аудита: проблемные зоны, узкие проезды, общественные пространства" src="/assets/masterplan.jpg">
     </div>
     <ul class="layer-labels">
       <li><b>01</b> Земля и право</li>
@@ -988,6 +992,20 @@ p{color:var(--ink-soft)}
       if(fErr)fErr.style.display='block';
     }
   });
+})();
+</script>
+<script>
+/* hero: кинематографичная послойная сборка взрыв-схемы */
+(function(){
+  var fig=document.getElementById('heroExplode'); if(!fig) return;
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  fig.classList.add('anim');
+  if(reduce){ fig.classList.add('play'); return; }
+  function play(){ requestAnimationFrame(function(){requestAnimationFrame(function(){fig.classList.add('play');});}); }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){play();io.disconnect();}});},{threshold:.25});
+    io.observe(fig);
+  } else { play(); }
 })();
 </script>
 <script>

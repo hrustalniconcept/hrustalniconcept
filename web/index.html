@@ -194,7 +194,7 @@ p{color:var(--ink-soft)}
 .sec-dark p{color:var(--muted-dk)}
 .sec-dark .eyebrow{color:rgba(226,235,242,.5)}
 .sec-mist{background:var(--mist)}
-.sec-head{display:flex;gap:22px;align-items:baseline;margin-bottom:clamp(24px,3vw,38px)}
+.sec-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:22px;align-items:start;margin-bottom:clamp(24px,3vw,38px)}
 .sec-head .idx{font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--flag);flex:none;padding-top:6px}
 .sec-dark .sec-head .idx{color:#fff}
 .sec-head .ht{max-width:30ch}
@@ -377,6 +377,26 @@ p{color:var(--ink-soft)}
 .consent input{accent-color:#fff}
 
 /* layered master-plan illustration */
+/* schematic infographics in section heads */
+.sec-fig{width:clamp(200px,24vw,300px);justify-self:end;align-self:center;color:var(--ink)}
+.sec-fig svg{width:100%;height:auto;display:block;overflow:visible}
+.sf-ln{fill:none;stroke:#0C2433;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sf-lf{fill:none;stroke:#C9D5DE;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.sf-nd{fill:#0C2433}
+.sf-ndo{fill:#fff;stroke:#0C2433;stroke-width:2}
+.sf-ac{fill:rgba(2,24,38,.07)}
+.sf-tx{font-family:'Manrope',sans-serif;font-weight:700;font-size:12px;fill:#5F7180;letter-spacing:.02em}
+.sec-fig .dr{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1s cubic-bezier(.16,1,.3,1)}
+.sec-fig.go .dr{stroke-dashoffset:0}
+.sec-fig .pp{opacity:0;transform:scale(.55);transform-box:fill-box;transform-origin:center;transition:opacity .45s ease,transform .55s cubic-bezier(.34,1.56,.64,1)}
+.sec-fig.go .pp{opacity:1;transform:none}
+.sec-fig .fd{opacity:0;transition:opacity .6s ease}
+.sec-fig.go .fd{opacity:1}
+.sec-fig.go .s1{transition-delay:.05s}.sec-fig.go .s2{transition-delay:.17s}.sec-fig.go .s3{transition-delay:.29s}
+.sec-fig.go .s4{transition-delay:.41s}.sec-fig.go .s5{transition-delay:.53s}.sec-fig.go .s6{transition-delay:.65s}
+@media(max-width:980px){.sec-fig{display:none}}
+@media(prefers-reduced-motion:reduce){.sec-fig .dr{stroke-dashoffset:0}.sec-fig .pp,.sec-fig .fd{opacity:1;transform:none;transition:none}}
+
 .hp{position:absolute!important;left:-9999px!important;top:auto;width:1px;height:1px;overflow:hidden}
 </style>
 </head>
@@ -458,6 +478,7 @@ p{color:var(--ink-soft)}
       <span class="idx">01</span>
       <div class="ht"><h2>Когда проекту нужен взгляд со стороны</h2>
         <p class="sub">Аудит обычно заказывают, когда что-то из этого уже стало вопросом, на который у команды нет однозначного ответа.</p></div>
+      <div class="sec-fig" aria-hidden="true"><svg viewBox="0 0 300 220" fill="none" xmlns="http://www.w3.org/2000/svg"><g class="sf-lf"><path class="dr s1" pathLength="1" d="M40 50 H260"/><path class="dr s1" pathLength="1" d="M40 95 H260"/><path class="dr s2" pathLength="1" d="M40 140 H260"/><path class="dr s2" pathLength="1" d="M40 182 H260"/><path class="dr s1" pathLength="1" d="M85 40 V190"/><path class="dr s1" pathLength="1" d="M130 40 V190"/><path class="dr s2" pathLength="1" d="M175 40 V190"/><path class="dr s2" pathLength="1" d="M220 40 V190"/></g><rect class="sf-ac pp s3" x="131" y="96" width="44" height="44" rx="3"/><rect class="sf-ac pp s4" x="176" y="51" width="44" height="44" rx="3"/><circle class="sf-ln dr s5" pathLength="1" cx="150" cy="118" r="42"/><path class="sf-ln dr s5" pathLength="1" d="M180 148 L212 180"/><path class="sf-ln dr s6" pathLength="1" d="M150 102 V134 M134 118 H166"/></svg></div>
     </div>
     <div class="pains-grid stg">
       <div class="pain"><div class="pn">01</div><h3>Концепция рисовалась раньше</h3><p>ППТ утверждён, а планировка и продукт придумывались год-два назад. Рынок и спрос с тех пор сместились, а проект остался прежним.</p></div>
@@ -490,6 +511,7 @@ p{color:var(--ink-soft)}
       <span class="idx">02</span>
       <div class="ht"><h2>Как проходит аудит</h2>
         <p class="sub">Это совместная работа с вашей командой, а не отчёт «со стороны». Всего две сессии — вводная и основная: между ними мы изучаем проект, на основной разбираем его вместе с вами и собираем дорожную карту шагов.</p></div>
+      <div class="sec-fig" aria-hidden="true"><svg viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="sf-lf dr s1" pathLength="1" d="M30 128 H270"/><path class="sf-ln dr s2" pathLength="1" d="M40 128 C 100 36, 200 36, 260 128"/><circle class="sf-nd pp s3" cx="40" cy="128" r="9"/><circle class="sf-ndo pp s4" cx="116" cy="128" r="9"/><circle class="sf-nd pp s5" cx="192" cy="128" r="9"/><circle class="sf-ndo pp s6" cx="260" cy="128" r="9"/><g class="sf-tx fd s6"><text x="40" y="162" text-anchor="middle">1</text><text x="116" y="162" text-anchor="middle">2</text><text x="192" y="162" text-anchor="middle">3</text><text x="260" y="162" text-anchor="middle">4</text></g></svg></div>
     </div>
     <div class="steps">
       <div class="step rv">
@@ -536,6 +558,7 @@ p{color:var(--ink-soft)}
       <span class="idx">03</span>
       <div class="ht"><h2>Что вы получаете</h2>
         <p class="sub">Аудит — это диагностика и направление, а не готовая концепция. Мы показываем, где проект силён и где теряет, и даём понятные следующие шаги.</p></div>
+      <div class="sec-fig" aria-hidden="true"><svg viewBox="0 0 300 210" fill="none" xmlns="http://www.w3.org/2000/svg"><rect class="sf-ln dr s1" pathLength="1" x="34" y="34" width="118" height="150" rx="8"/><path class="sf-lf dr s2" pathLength="1" d="M54 70 H132 M54 92 H132 M54 114 H112"/><path class="sf-ln dr s3" pathLength="1" d="M56 146 l9 10 l20 -22"/><path class="sf-lf dr s2" pathLength="1" d="M186 184 V52 M186 184 H278"/><rect class="sf-ac pp s4" x="200" y="138" width="16" height="46"/><rect class="sf-ac pp s5" x="228" y="110" width="16" height="74"/><rect class="sf-ac pp s6" x="256" y="78" width="16" height="106"/><path class="sf-ln dr s6" pathLength="1" d="M200 150 L236 116 L270 68"/><path class="sf-ln dr s6" pathLength="1" d="M270 68 l-14 1 M270 68 l1 14"/></svg></div>
     </div>
     <div class="deliv-grid stg">
       <div class="dcard">
@@ -569,6 +592,7 @@ p{color:var(--ink-soft)}
       <span class="idx">04</span>
       <div class="ht"><h2>Что вскрывает аудит: обезличенный кейс</h2>
         <p class="sub">Первый коттеджный посёлок команды на Урале, комфорт-класс, крупная площадка. Названия, собственников и цифры не раскрываем — показываем логику работы.</p></div>
+      <div class="sec-fig" aria-hidden="true"><svg viewBox="0 0 300 210" fill="none" xmlns="http://www.w3.org/2000/svg"><rect class="sf-ln dr s1" pathLength="1" x="34" y="34" width="232" height="150" rx="6"/><path class="sf-lf dr s2" pathLength="1" d="M96 34 V184 M158 34 V184 M220 34 V184 M34 96 H266 M34 140 H266"/><circle class="sf-lf fd s3" cx="126" cy="70" r="15" stroke-dasharray="3 5"/><circle class="sf-lf fd s3" cx="202" cy="154" r="15" stroke-dasharray="3 5"/><path class="sf-ln dr s4" pathLength="1" d="M150 22 V196"/><circle class="sf-nd pp s5" cx="126" cy="70" r="5"/><circle class="sf-nd pp s6" cx="202" cy="154" r="5"/></svg></div>
     </div>
     <div class="aud-lead rv">
       <span class="eyebrow" style="color:rgba(226,235,242,.55)">Главный вывод аудита</span>
@@ -613,6 +637,7 @@ p{color:var(--ink-soft)}
       <span class="idx">05</span>
       <div class="ht"><h2>Два формата — под масштаб проекта</h2>
         <p class="sub">Точную стоимость называем после короткого разговора и знакомства с вашими материалами — она зависит от площади и сложности.</p></div>
+      <div class="sec-fig" aria-hidden="true"><svg viewBox="0 0 300 210" fill="none" xmlns="http://www.w3.org/2000/svg"><rect class="sf-ln dr s1" pathLength="1" x="40" y="108" width="72" height="72" rx="5"/><path class="sf-lf dr s2" pathLength="1" d="M76 108 V180 M40 144 H112"/><text class="sf-tx fd s3" x="76" y="200" text-anchor="middle">до ~20 га</text><rect class="sf-ln dr s2" pathLength="1" x="150" y="38" width="120" height="142" rx="6"/><path class="sf-lf dr s3" pathLength="1" d="M190 38 V180 M230 38 V180 M150 85 H270 M150 133 H270"/><text class="sf-tx fd s4" x="210" y="200" text-anchor="middle">20+ га · КРТ</text></svg></div>
     </div>
     <div class="deliv-grid stg">
       <div class="dcard">
@@ -642,6 +667,7 @@ p{color:var(--ink-soft)}
     <div class="sec-head rv">
       <span class="idx">06</span>
       <div class="ht"><h2>Чем это отличается от консультации</h2></div>
+      <div class="sec-fig" aria-hidden="true"><svg viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg"><rect class="sf-lf dr s1" pathLength="1" x="32" y="36" width="98" height="128" rx="8"/><path class="sf-lf dr s2" pathLength="1" d="M50 84 H114 M50 104 H114 M50 124 H98"/><text x="78" y="68" text-anchor="middle" class="fd s3" style="font:700 26px Manrope;fill:#C9D5DE">&#8221;</text><path class="sf-lf dr s2" pathLength="1" d="M150 34 V168"/><rect class="sf-ln dr s3" pathLength="1" x="170" y="36" width="98" height="80" rx="6"/><path class="sf-lf dr s4" pathLength="1" d="M203 36 V116 M236 36 V116 M170 69 H268 M170 95 H268"/><rect class="sf-ac pp s5" x="170" y="132" width="28" height="20" rx="2"/><rect class="sf-ac pp s5" x="205" y="132" width="28" height="20" rx="2"/><rect class="sf-ac pp s5" x="240" y="132" width="28" height="20" rx="2"/><path class="sf-ln dr s6" pathLength="1" d="M170 132 H268"/></svg></div>
     </div>
     <div class="princ-grid stg">
       <div class="pr"><span class="prn">01</span><div><h3>Диагностика, а не критика</h3><p>Мы не раздаём оценки. По каждому блоку отмечаем, что хорошо и где точки роста, — и даём поле решений, а не приговор проекту.</p></div></div>
@@ -918,6 +944,16 @@ p{color:var(--ink-soft)}
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){play();io.disconnect();}});},{threshold:.25});
     io.observe(fig);
   } else { play(); }
+})();
+</script>
+<script>
+/* draw-on schematic infographics in section heads */
+(function(){
+  var figs=document.querySelectorAll('.sec-fig'); if(!figs.length) return;
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(reduce || !('IntersectionObserver' in window)){ figs.forEach(function(f){f.classList.add('go');}); return; }
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('go');io.unobserve(e.target);}});},{threshold:.3});
+  figs.forEach(function(f){io.observe(f);});
 })();
 </script>
 <!-- COOKIE BANNER -->

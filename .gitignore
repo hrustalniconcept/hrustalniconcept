@@ -1,0 +1,19 @@
+# секреты и окружение
+.env
+.env.*
+!.env.example
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# данные (лог согласий, локальное хранилище)
+data/
+
+# ОС/редакторы
+.DS_Store
+.idea/
+.vscode/

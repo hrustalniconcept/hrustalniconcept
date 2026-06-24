@@ -162,10 +162,9 @@ p{color:var(--ink-soft)}
 @media(max-width:520px){.findings{grid-template-columns:1fr}}
 
 /* hero «взрыв-схема» — послойная сборка мастер-плана */
-.hero-explode{position:relative;width:min(80%,360px);margin:0 auto;aspect-ratio:1500/1120;
-  filter:drop-shadow(0 26px 44px rgba(2,24,38,.13))}
+.hero-explode{position:relative;width:min(80%,360px);margin:0 auto;aspect-ratio:1500/1120}
 .hx-layer{position:absolute;left:0;right:0;height:20%;overflow:hidden;top:calc(var(--i)*20%)}
-.hx-layer img{position:absolute;left:0;width:100%;height:auto;display:block;top:calc(var(--i)*-100%)}
+.hx-layer img{position:absolute;left:0;width:100%;height:auto;display:block;top:calc(var(--i)*-100%);mix-blend-mode:multiply}
 /* стартовое состояние и кинематографичная сборка — только когда JS включил .anim */
 .hero-explode.anim .hx-layer{opacity:0;transform:translateY(28px) scale(.965)}
 .hero-explode.anim.play .hx-layer{opacity:1;transform:none;
@@ -190,12 +189,12 @@ p{color:var(--ink-soft)}
   .metric{border-bottom:1px solid var(--line)}.metric:nth-child(2){border-right:0}}
 
 /* section frame */
-.sec{padding:clamp(64px,8vw,116px) 0}
+.sec{padding:clamp(44px,5.5vw,76px) 0}
 .sec-dark{background:var(--ink);color:#fff}
 .sec-dark p{color:var(--muted-dk)}
 .sec-dark .eyebrow{color:rgba(226,235,242,.5)}
 .sec-mist{background:var(--mist)}
-.sec-head{display:flex;gap:22px;align-items:baseline;margin-bottom:clamp(34px,4vw,56px)}
+.sec-head{display:flex;gap:22px;align-items:baseline;margin-bottom:clamp(24px,3vw,38px)}
 .sec-head .idx{font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--flag);flex:none;padding-top:6px}
 .sec-dark .sec-head .idx{color:#fff}
 .sec-head .ht{max-width:30ch}
@@ -220,7 +219,7 @@ p{color:var(--ink-soft)}
 
 /* process timeline */
 .steps{display:grid;gap:0;border-top:1px solid var(--line)}
-.step{display:grid;grid-template-columns:64px 1fr;gap:24px;padding:30px 0;border-bottom:1px solid var(--line)}
+.step{display:grid;grid-template-columns:64px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--line)}
 .step .sn{font-size:13px;font-weight:700;color:var(--flag);letter-spacing:.06em}
 .step h3{margin-bottom:10px}
 .step p{font-size:15px;line-height:1.55;max-width:62ch}
@@ -378,50 +377,6 @@ p{color:var(--ink-soft)}
 .consent input{accent-color:#fff}
 
 /* layered master-plan illustration */
-.layered{background:var(--paper)}
-.layered .layer-stage{position:relative;height:200vh;margin-top:10px}
-.layer-sticky{position:sticky;top:0;height:100vh;display:grid;place-items:center;perspective:1500px;overflow:hidden}
-.layer-img,.layer-vid{width:min(58vw,540px);max-height:70vh;object-fit:contain;border-radius:12px;will-change:transform,opacity;filter:drop-shadow(0 34px 56px rgba(2,24,38,.12));opacity:.96}
-.layer-labels{position:absolute;left:max(20px,4vw);top:50%;transform:translateY(-50%);margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:15px;z-index:3}
-.layer-labels li{display:flex;gap:11px;align-items:baseline;font-size:14px;color:var(--ink);opacity:0;transform:translateX(-16px);transition:.7s cubic-bezier(.16,1,.3,1)}
-.layer-labels li b{color:var(--muted);font-size:11.5px;font-weight:700;letter-spacing:.06em;font-variant-numeric:tabular-nums;min-width:18px}
-.layer-stage.seen .layer-labels li{opacity:1;transform:none}
-.layer-stage.seen .layer-labels li:nth-child(1){transition-delay:.06s}
-.layer-stage.seen .layer-labels li:nth-child(2){transition-delay:.16s}
-.layer-stage.seen .layer-labels li:nth-child(3){transition-delay:.26s}
-.layer-stage.seen .layer-labels li:nth-child(4){transition-delay:.36s}
-.layer-stage.seen .layer-labels li:nth-child(5){transition-delay:.46s}
-@media(max-width:760px){
- .layered .layer-stage{height:auto}
- .layer-sticky{position:static;height:auto;padding:26px 0;perspective:none}
- .layer-img,.layer-vid{width:90vw;transform:none!important;opacity:1!important}
- .layer-labels{position:static;transform:none;flex-direction:row;flex-wrap:wrap;justify-content:center;gap:8px 14px;margin:18px auto 0;max-width:560px}
- .layer-labels li{font-size:12px;opacity:1;transform:none}
-}
-@media(prefers-reduced-motion:reduce){.layer-img,.layer-vid{transform:none!important;opacity:1!important}}
-
-/* sketch -> render */
-.viz{background:var(--paper)}
-.viz .viz-stage{position:relative;height:200vh;margin-top:10px}
-.viz-sticky{position:sticky;top:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;overflow:hidden}
-.viz-frame{position:relative;width:min(68vw,680px);aspect-ratio:1650/904;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 30px 64px -38px rgba(2,24,38,.34);border:1px solid var(--line)}
-.viz-render,.viz-sketch{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
-.viz-render{will-change:transform;transform:scale(1.06)}
-.viz-sketch{will-change:opacity;z-index:2}
-.viz-cap{display:flex;align-items:center;gap:14px;font-size:13px;letter-spacing:.04em;color:var(--muted)}
-.viz-cap .viz-c1,.viz-cap .viz-c2{transition:.4s}
-.viz-cap .viz-c2{color:var(--line)}
-.viz-cap.done .viz-c1{color:var(--line)}
-.viz-cap.done .viz-c2{color:var(--ink);font-weight:700}
-@media(max-width:760px){
- .viz .viz-stage{height:auto}
- .viz-sticky{position:static;min-height:0;padding:22px 0}
- .viz-frame{aspect-ratio:auto;display:flex;flex-direction:column}
- .viz-render,.viz-sketch{position:static;width:100%;height:auto;object-fit:contain;transform:none!important;opacity:1!important;display:block}
- .viz-sketch{border-bottom:1px solid var(--line)}
-}
-@media(prefers-reduced-motion:reduce){.viz-sketch{opacity:0!important}.viz-render{transform:none!important}}
-
 .hp{position:absolute!important;left:-9999px!important;top:auto;width:1px;height:1px;overflow:hidden}
 </style>
 </head>
@@ -608,29 +563,6 @@ p{color:var(--ink-soft)}
 </section>
 
 <!-- 05 CASES -->
-<!-- LAYERED MASTER-PLAN -->
-<section class="sec layered" id="layers">
-  <div class="container">
-    <div class="sec-head rv">
-      <span class="idx" style="letter-spacing:.14em">МЕТОД</span>
-      <div class="ht"><h2>Аудит — это послойный разбор проекта</h2>
-        <p class="sub">Мы раскладываем посёлок на слои — земля и право, продукт, инженерия, среда, экономика — и смотрим, где они между собой не сходятся. Там и прячутся риски, и резервы капитализации.</p></div>
-    </div>
-  </div>
-  <div class="layer-stage" id="layerStage">
-    <div class="layer-sticky">
-      <img class="layer-img" id="layerImg" loading="lazy" decoding="async" alt="Мастер-план коттеджного посёлка с отметками аудита: проблемные зоны, узкие проезды, общественные пространства" src="/assets/masterplan.jpg">
-    </div>
-    <ul class="layer-labels">
-      <li><b>01</b> Земля и право</li>
-      <li><b>02</b> Мастер-план и продукт</li>
-      <li><b>03</b> Инженерия и сети</li>
-      <li><b>04</b> Среда и благоустройство</li>
-      <li><b>05</b> Экономика и очерёдность</li>
-    </ul>
-  </div>
-</section>
-
 <section class="sec sec-mist" id="cases">
   <div class="container">
     <div class="sec-head rv">
@@ -746,26 +678,6 @@ p{color:var(--ink-soft)}
           <p>Отвечает за экономику и продажи. Превращает концепцию в реализуемый проект с прогнозируемой окупаемостью и понятной стратегией вывода на рынок.</p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- SKETCH -> RENDER -->
-<section class="sec viz" id="viz">
-  <div class="container">
-    <div class="sec-head rv">
-      <span class="idx" style="letter-spacing:.14em">РЕЗУЛЬТАТ</span>
-      <div class="ht"><h2>От схемы — к визуализации</h2>
-        <p class="sub">Концепция — это путь от линии на бумаге до среды, в которой хочется жить. Пролистайте — схема проявится в визуализацию.</p></div>
-    </div>
-  </div>
-  <div class="viz-stage" id="vizStage">
-    <div class="viz-sticky">
-      <div class="viz-frame">
-        <img class="viz-render" id="vizRender" loading="lazy" decoding="async" alt="Визуализация вечерней зоны отдыха у воды в коттеджном посёлке" src="/assets/viz-render.jpg">
-        <img class="viz-sketch" id="vizSketch" loading="lazy" decoding="async" alt="Концепт-схема зоны отдыха у воды" src="/assets/viz-sketch.jpg">
-      </div>
-      <div class="viz-cap"><span class="viz-c1">Схема</span><span class="viz-arrow">→</span><span class="viz-c2">Визуализация</span></div>
     </div>
   </div>
 </section>
@@ -1008,61 +920,6 @@ p{color:var(--ink-soft)}
   } else { play(); }
 })();
 </script>
-<script>
-(function(){
-  var stage=document.getElementById('layerStage'); if(!stage) return;
-  var img=document.getElementById('layerImg');
-  var vid=document.getElementById('layerVid');
-  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)stage.classList.add('seen');});},{threshold:.18});
-  io.observe(stage);
-  if(reduce || innerWidth<=760) return;
-  var useVid = vid && vid.getAttribute('src');
-  if(!useVid && img){ img.style.opacity='0'; }
-  var ticking=false;
-  function ease(t){return t<0.5?2*t*t:1-Math.pow(-2*t+2,2)/2;}
-  function upd(){
-    ticking=false;
-    var r=stage.getBoundingClientRect();
-    var total=r.height-innerHeight;
-    var p=total>0?(-r.top)/total:0; p=Math.min(1,Math.max(0,p));
-    if(useVid && vid.duration){ vid.currentTime=p*vid.duration; return; }
-    var a=Math.min(1,p/0.58), ea=ease(a);
-    var scale=0.84+0.16*ea+Math.max(0,p-0.58)*0.10;
-    var ty=42-42*ea-Math.max(0,p-0.58)*64;
-    var rot=9-9*ea;
-    img.style.transform='translateY('+ty+'px) scale('+scale+') rotateX('+rot+'deg)';
-    img.style.opacity=Math.min(1,a*1.5);
-  }
-  addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(upd);}},{passive:true});
-  addEventListener('resize',upd); upd();
-})();
-</script>
-<script>
-(function(){
-  var stage=document.getElementById('vizStage'); if(!stage) return;
-  var sk=document.getElementById('vizSketch'), rn=document.getElementById('vizRender');
-  var cap=stage.querySelector('.viz-cap');
-  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-  if(reduce||innerWidth<=760){ if(sk)sk.style.opacity=''; if(rn)rn.style.transform=''; return; }
-  sk.style.opacity='1'; rn.style.transform='scale(1.06)';
-  var ticking=false;
-  function ease(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;}
-  function upd(){
-    ticking=false;
-    var r=stage.getBoundingClientRect();
-    var total=r.height-innerHeight;
-    var p=total>0?(-r.top)/total:0; p=Math.min(1,Math.max(0,p));
-    var t=Math.min(1,Math.max(0,(p-0.16)/0.62)), e=ease(t);
-    sk.style.opacity=(1-e).toFixed(3);
-    rn.style.transform='scale('+(1.06-0.06*e).toFixed(3)+')';
-    if(cap) cap.classList.toggle('done', e>0.5);
-  }
-  addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(upd);}},{passive:true});
-  addEventListener('resize',upd); upd();
-})();
-</script>
-
 <!-- COOKIE BANNER -->
 <div id="cookieBanner" style="display:none;position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;max-width:760px;margin:0 auto;background:#021826;color:#fff;border-radius:14px;padding:18px 20px;box-shadow:0 18px 50px rgba(2,24,38,.35);font-size:14px;line-height:1.5">
   <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;justify-content:space-between">

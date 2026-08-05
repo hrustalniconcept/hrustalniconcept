@@ -1,0 +1,5 @@
+# Сырой ответ API и заполненные копии — не коммитим (могут быть большими,
+# и это данные, а не код). Шаблон Wordstat_Chita_analiz.xlsx коммитится.
+raw_data.json
+*.filled.xlsx
+loprofile/
